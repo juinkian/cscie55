@@ -1,4 +1,4 @@
-package cscie55.hw1.Elevator
+package cscie55.hw1;
 
 public class Elevator
 {
@@ -8,8 +8,18 @@ public class Elevator
 	public static final int DOWN = -1; 
 
 	private int direction = UP;
+	private int currentFloor = 1;
+	private int [] passengersToFloor = new int [FLOOR_NUMBERS];
 
-	int currentFloor = 1;
+
+	//Constructor
+	public Elevator()
+	{
+		for(int i = 0; i < passengersToFloor.length; i++)
+	{
+			passengersToFloor[i] = 0;
+		}
+	}
 
 	public void goUp()
 	{
@@ -28,7 +38,12 @@ public class Elevator
 
 	public String toString()
 	{
-		return currentFloor + " :" + + " passengers".
+		return currentFloor + " :" + "" + " passengers";
 	}
 
+	public static void main(String argv[])
+	{
+		Elevator elevator = new Elevator();
+		System.out.println("hi");
+	}
 }
