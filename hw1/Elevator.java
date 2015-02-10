@@ -22,12 +22,12 @@ public class Elevator
 		}
 	}
 
-	public void goUp()
+	private void goUp()
 	{
 		direction = UP;
 	}
 
-	public void goDown()
+	private void goDown()
 	{
 		direction = DOWN;
 	}
@@ -42,11 +42,16 @@ public class Elevator
 	public void move()
 	{
 	//	for(int i = 0; i < passengersToFloor.length; i+=direction)
-		for(int i = 0; i < FLOOR_NUMBERS; i++)	
+		int i = 0;
+		do 
 		{
 			this.unload(i);
-			this.toString(i);
-		}
+			System.out.println(this);
+			this.checkDirection(i);
+			i += direction;
+		} while (i != 0); 
+
+
 	}
 
 	public void unload(int floor)
@@ -54,18 +59,29 @@ public class Elevator
 		passengersToFloor[floor] = 0;
 	}
 
-	public void toString(int floor)
+	public void checkDirection(int floor)
+	{
+		if (floor == 0 )
+		{
+			this.goUp();
+		}
+		else if ( floor == 6)
+		{
+			this.goDown();
+		}
+	}	
+	public String toString()
 	{
 		String plural; 
 		if (getTotalPassengerNumber() == 1)
 		{
-			plural = "s";
+			plural = "";
 		} 
 		else
 		{
-			plural ="";
+			plural ="s";
 		}
-		System.out.println("Floor " + floor + " : " +  this.getTotalPassengerNumber() + " passenger" + plural + ".");
+		return "Floor " + "1" + " : " +  this.getTotalPassengerNumber() + " passenger" + plural + ".";
 	}
 
 	// Getter method
@@ -98,12 +114,6 @@ public class Elevator
 		elevator.boardPassenger(3);
 		elevator.boardPassenger(5);
 
-		for(int i = 0; i < FLOOR_NUMBERS; i++)
-		{
-			System.out.println(elevator.getPassengerNumbertoFloor(i));
-		}
-
-		System.out.println("number of passenger: "  + elevator.getTotalPassengerNumber());
 		elevator.move();
 	}
 }
